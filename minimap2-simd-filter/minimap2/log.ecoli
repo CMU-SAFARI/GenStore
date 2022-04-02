@@ -1,0 +1,35 @@
+###BASELINE: W = 10, K= 
+16 MB
+    [M::main::3.439*0.80] loaded/built the index for 1 target sequence(s)
+    [M::mm_idx_stat] kmer size: 15; skip: 10; is_hpc: 0; #seq: 1
+    [M::mm_idx_stat::3.455*0.80] distinct minimizers: 815035 (98.17% are singletons); average occurrences: 1.034; average spacing: 5.507; total length: 4641652
+    3: inside mm_idx_reader_read
+    4: going to generate the idx
+    [M::main] Version: 2.17-r974-dirty
+    [M::main] CMD: ./minimap2 -d ../../../Inputs_Alignment/GCF.test ../../../Inputs_Alignment/GCF_000005845.2_ASM584v2_genomic.fna
+    [M::main] Real time: 3.987 sec; CPU: 2.772 sec; Peak RSS: 0.050 GB
+
+
+### W= 1, K = 100
+73 MB
+    [M::main::4.404*0.94] loaded/built the index for 1 target sequence(s)
+    [M::mm_idx_stat] kmer size: 100; skip: 1; is_hpc: 0; #seq: 1
+    [M::mm_idx_stat::4.473*0.94] distinct minimizers: 4575355 (99.51% are singletons); average occurrences: 1.014; average spacing: 1.000; total length: 4641652
+    3: inside mm_idx_reader_read
+    4: going to generate the idx
+    [M::main] Version: 2.17-r974-dirty
+    [M::main] CMD: ./minimap2 -k 100 -w 1 -d ../../../Inputs_Alignment/GCF_k100_w1.test ../../../Inputs_Alignment/GCF_000005845.2_ASM584v2_genomic.fna
+    [M::main] Real time: 5.206 sec; CPU: 4.241 sec; Peak RSS: 0.230 GB
+
+
+### W = 10, K = 100
+16 MB
+    [M::main::3.430*0.99] loaded/built the index for 1 target sequence(s)
+    [M::mm_idx_stat] kmer size: 100; skip: 10; is_hpc: 0; #seq: 1
+    [M::mm_idx_stat::3.446*0.99] distinct minimizers: 831814 (99.51% are singletons); average occurrences: 1.014; average spacing: 5.501; total length: 4641652
+    3: inside mm_idx_reader_read
+    4: going to generate the idx
+    [M::main] Version: 2.17-r974-dirty
+    [M::main] CMD: ./minimap2 -k 100 -w 10 -d ../../../Inputs_Alignment/GCF_k100_w10.test ../../../Inputs_Alignment/GCF_000005845.2_ASM584v2_genomic.fna
+    [M::main] Real time: 3.599 sec; CPU: 3.433 sec; Peak RSS: 0.048 GB
+
