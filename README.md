@@ -15,13 +15,15 @@ GenStore, the first in-storage processing system de- signed for genome sequence 
 - [Baseline Software Exact Match Filter](#baseline-software-exact-match-filter)
   * [Code Walkthrough](#code-walkthrough)
 - [Software GenStore](#software-genstore)
+  * [Experiment Workflow](#experiment-workflow)
+    + [Parse the reference file](#parse-the-reference-file)
+    + [Parse the read file](#parse-the-read-file)
+    + [Run the exact match filter](#run-the-exact-match-filter)
 - [Hardware GenStore](#hardware-genstore)
   * [HDL Implementation](#hdl-implementation)
   * [End-to-end Throughput](#end-to-end-throughput)
 - [Citation](#citation)
 - [Contact](#contact)
-
-
 
 
 
@@ -67,6 +69,7 @@ We implement a baseline exact match filter using SIMD operations integrated in [
 minimap2 -d ref.mmi ref.fa                     # indexing
 minimap2 -a ref.mmi reads.fq > alignment.sam   # alignment
 ```
+For more information about minimap2, please refer to its [original repo]().
 
 ### Code Walkthrough
 
@@ -76,7 +79,55 @@ minimap2 -a ref.mmi reads.fq > alignment.sam   # alignment
 
 
 
+
 ## Software GenStore
+
+Software GenStore is an implementation of the GenStore filter without in-storage support.
+
+### Experiment Workflow
+
+1. Compile the hash sorter and minimap 2 by running `make` in `genstore-sw-filter` and `genstore-sw-filter/minimap2/`
+
+#### Parse the reference file
+2. Generate logs for the reference using the command
+```
+minimap2 -w1 -k150 -d $REF_FILE.mmi $REF_FILE >$REF_FILE.log 2>/dev/null
+```
+3. Generate a hash and position table for the reference by running
+```
+./gen_hash $REF_FILE.log > $REF_FILE.hashes
+```
+4. Reduce the table to the target hash size using
+```
+./generate_index $HASH_SIZE $REF_FILE.hashes > $REF_FILE.$HASH_SIZE.hashes.bin
+```
+5. Index the table using
+```
+./index_index $HASH_SIZE $REF_FILE.$HASH_SIZE.hashes.bin $(( 64 - LOG2_NUM_THREADS )) > $REF_FILE.$HASH_SIZE.hashes.bin.index
+```
+
+#### Parse the read file
+6. Generate logs for the read file using the command
+```
+minimap2 -w1 -k150 -d $READ_FILE.mmi $READ_FILE >$READ_FILE.log 2>/dev/null
+```
+7. Generate a table for the reads by running
+```
+./generate_read_hashes.sh $READ_FILE.log > $READ_FILE.hashes
+```
+8. Reduce the table to the target hash size using
+```
+./generate_reads $HASH_SIZE $READ_FILE.hashes > $READ_FILE.$HASH_SIZE.hashes
+```
+9. Index the table using
+```
+./index_reads $HASH_SIZE $READ_FILE.$HASH_SIZE.hashes $(( 64 - LOG2_NUM_THREADS )) > $READ_FILE.$HASH_SIZE.hashes.index
+```
+
+#### Run the exact match filter
+```
+./check_files_mt $HASH_SIZE $REF_FILE.$HASH_SIZE.hashes.bin $READ_FILE.$HASH_SIZE.hashes
+```
 
 
 
@@ -97,9 +148,11 @@ We implement GenStore's accelerator units in Verilog to faithfully measure the t
 We will soon release the scripts used for Ramulator to model DRAM timing and the scripts used for MQSim to model SSD timing.
 
 
+
 ### End-to-end Throughput
 
 We will soon release the script used for modelling the end-to-end throughput of GenStore based on the throughput of each GenStore pipeline stage.
+
 
 
 
@@ -113,6 +166,7 @@ If you use this repo, please cite the following paper:
   year={2022}
 }
 ```
+
 
 ## Contact
 
