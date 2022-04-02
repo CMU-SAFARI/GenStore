@@ -1,0 +1,15 @@
+#BASELINE K = 15,  W = 10
+7.0 GB
+
+#K= 100, W = 1
+41 GB
+[M::main] Version: 2.17-r974-dirty
+[M::main] CMD: /home/mnika/project_DeepAlign/DeepAlign2/utils/minimap2/./minimap2 -k 100 -w 1 -d ../../../Inputs_Alignment/hg38_k100_w1.mmi ../../../Inputs_Alignment/hg38.fa
+[M::main] Real time: 2823.828 sec; CPU: 3046.012 sec; Peak RSS: 69.552 GB
+
+#K= 100, W = 10
+9.6 GB
+M::main] Version: 2.17-r974-dirty
+[M::main] CMD: /home/mnika/project_DeepAlign/DeepAlign2/utils/minimap2/./minimap2 -k 100 -w 10 -d /mnt/panzer/mnika/Inputs_Alignment/hg38_k100_w10.mmi ../../../Inputs_Alignment/hg38.fa
+[M::main] Real time: 2216.820 sec; CPU: 2213.375 sec; Peak RSS: 19.012 GB
+
