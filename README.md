@@ -5,6 +5,27 @@
 GenStore, the first in-storage processing system de- signed for genome sequence analysis that greatly reduces both data movement and computational overheads of genome sequence analysis by exploiting low-cost and accurate in-storage filters. GenStore leverages hardware/software co-design to address the challenges of in-storage processing, supporting reads with 1) different properties such as read lengths and error rates, which highly depend on the sequencing technology, and 2) different degrees of genetic variation compared to the reference genome, which highly depends on the genomes that are being compared. 
 
 
+## Table of Contents
+
+- [What is GenStore?](#what-is-genstore-)
+- [Prerequisites](#prerequisites)
+- [Preparing Input Data](#preparing-input-data)
+  * [Real Genomics Read Sets](#real-genomics-read-sets)
+  * [Synthetic Read Sets](#synthetic-read-sets)
+- [Baseline Software Exact Match Filter](#baseline-software-exact-match-filter)
+  * [Code Walkthrough](#code-walkthrough)
+- [Software GenStore](#software-genstore)
+- [Hardware GenStore](#hardware-genstore)
+  * [HDL Implementation](#hdl-implementation)
+  * [End-to-end Throughput](#end-to-end-throughput)
+- [Citation](#citation)
+- [Contact](#contact)
+
+<small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
+
+
+
+
 
 ## Prerequisites
 
