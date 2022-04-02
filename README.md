@@ -21,8 +21,6 @@ GenStore, the first in-storage processing system de- signed for genome sequence 
 - [Citation](#citation)
 - [Contact](#contact)
 
-<small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
-
 
 
 
