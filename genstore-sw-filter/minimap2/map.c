@@ -9,7 +9,6 @@
 #include "mmpriv.h"
 #include "bseq.h"
 #include "khash.h"
-#include "../../src/SneakySnake.h"
 #include <stdint.h>
 #include <inttypes.h>
 #include "ksw2.h"
@@ -373,8 +372,6 @@ int mm_map_frag2(const mm_idx_t *mi, const mm_idx_t *mi_exact, int n_segs, const
                     else {
                     
                         if ((Seed_Num>=SEED_NUM_PER_READ)) {
-                            //if (mm_dbg_flag & MM_DBG_PRINT_SEED)
-                                //fprintf(stderr,"SneakSnake: %d\t",mappingStartingPosition);	
                             MappedReadNo=MappedReadNo+1;
                             char RefSeq[qlens[0]];
                             mapStartPos = mi->seq[a[i-1].x<<1>>33].offset + (uint64_t)mappingStartingPosition;
@@ -394,7 +391,6 @@ int mm_map_frag2(const mm_idx_t *mi, const mm_idx_t *mi_exact, int n_segs, const
                             
                             int Edits=0;
                             
-                            //	Edits = SneakySnake(qlens[0], RefSeq, seqs[0], SSEditThreshold, SSWindow, 0, SSIteration);
                         //	if(Edits > -1){
                             /*
                                 if (printSAM) {
