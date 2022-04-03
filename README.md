@@ -6,7 +6,7 @@ GenStore is the first in-storage processing system designed for genome sequence 
 
 ***Watch our [full talk](https://www.youtube.com/watch?v=bv7hgXOOMjk) and [lightning talk](https://www.youtube.com/watch?v=Vi1af8KY0g8) about GenStore!***
 
-![alt text](http://url/to/img.png)
+![alt text](https://github.com/nikamgh/GenStore-internal/blob/main/gs-overview.jpg)
 
 ## Citation
 If you find this repo useful, please cite the following paper:
