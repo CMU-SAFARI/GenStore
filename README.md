@@ -4,6 +4,21 @@
 
 GenStore is the first in-storage processing system designed for genome sequence analysis that greatly reduces both data movement and computational overheads of genome sequence analysis by exploiting low-cost and accurate in-storage filters. GenStore leverages hardware/software co-design to address the challenges of in-storage processing, supporting reads with 1) different properties such as read lengths and error rates, which highly depend on the sequencing technology, and 2) different degrees of genetic variation compared to the reference genome, which highly depends on the genomes that are being compared. 
 
+## Citation
+If you find this repo useful, please cite the following paper:
+
+Nika Mansouri Ghiasi, Jisung Park, Harun Mustafa, Jeremie Kim, Ataberk Olgun, Arvid Gollwitzer, Damla Senol Cali, Can Firtina, Haiyu Mao, Nour Almadhoun Alserr, Rachata Ausavarungnirun, Nandita Vijaykumar, Mohammed Alser, and Onur Mutlu,
+["GenStore: A High-Performance and Energy-Efficient In-Storage Computing System for Genome Sequence Analysis"](https://people.inf.ethz.ch/omutlu/pub/GenStore_asplos22-arxiv.pdf)
+Proceedings of the 27th International Conference on Architectural Support for Programming Languages and Operating Systems (ASPLOS), 2022
+
+```bibtex
+@inproceedings{mansouri2022genstore,
+  title={GenStore: a high-performance in-storage processing system for genome sequence analysis},
+  author={Mansouri Ghiasi, Nika and Park, Jisung and Mustafa, Harun and Kim, Jeremie and Olgun, Ataberk and Gollwitzer, Arvid and Senol Cali, Damla and Firtina, Can and Mao, Haiyu and Almadhoun Alserr, Nour and others},
+  booktitle={Proceedings of the 27th ACM International Conference on Architectural Support for Programming Languages and Operating Systems},
+  year={2022}
+}
+```
 
 ## Table of Contents
 
@@ -156,16 +171,7 @@ We will soon release the script used for modelling the end-to-end throughput of 
 
 
 
-## Citation
-If you use this repo, please cite the following paper:
-```
-@inproceedings{mansouri2022genstore,
-  title={GenStore: a high-performance in-storage processing system for genome sequence analysis},
-  author={Mansouri Ghiasi, Nika and Park, Jisung and Mustafa, Harun and Kim, Jeremie and Olgun, Ataberk and Gollwitzer, Arvid and Senol Cali, Damla and Firtina, Can and Mao, Haiyu and Almadhoun Alserr, Nour and others},
-  booktitle={Proceedings of the 27th ACM International Conference on Architectural Support for Programming Languages and Operating Systems},
-  year={2022}
-}
-```
+
 
 
 ## Contact
