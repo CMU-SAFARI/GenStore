@@ -407,13 +407,6 @@ int mm_map_frag2(const mm_idx_t *mi, const mm_idx_t *mi_exact, int n_segs, const
                                }
                               
 
-
-                               /*     
-                                if( (exact_match_simd) && (qlens[0] != 76))
-                                    printf("WWWW total simd non76\n");
-                                if( (exact_match_simd) && (qlens[0] == 76))
-                                    printf("WWWW total simd 76\n");
-                                */
                                if(!exact_match_simd){
                                     
                                     //ksw_extz(0, ql, qs, tl, ts, 5, mat, gapo, gape, -1, -1, 0, &ez);	
