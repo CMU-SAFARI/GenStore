@@ -4,6 +4,8 @@
 
 GenStore is the first in-storage processing system designed for genome sequence analysis that greatly reduces both data movement and computational overheads of genome sequence analysis by exploiting low-cost and accurate in-storage filters. GenStore leverages hardware/software co-design to address the challenges of in-storage processing, supporting reads with 1) different properties such as read lengths and error rates, which highly depend on the sequencing technology, and 2) different degrees of genetic variation compared to the reference genome, which highly depends on the genomes that are being compared. 
 
+***Watch our [full talk](https://www.youtube.com/watch?v=bv7hgXOOMjk) and [lightning talk](https://www.youtube.com/watch?v=Vi1af8KY0g8) about GenStore!***
+
 ## Citation
 If you find this repo useful, please cite the following paper:
 
