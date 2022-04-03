@@ -113,7 +113,7 @@ Software GenStore is an implementation of the GenStore filter without in-storage
 #### Parse the reference file
 2. Generate logs for the reference using the command
 ```
-minimap2 -w1 -k150 -d $REF_FILE.mmi $REF_FILE >$REF_FILE.log 2>/dev/null
+minimap2/minimap2 -w1 -k150 -d $REF_FILE.mmi $REF_FILE >$REF_FILE.log 2>/dev/null
 ```
 3. Generate a hash and position table for the reference by running
 ```
@@ -131,7 +131,7 @@ minimap2 -w1 -k150 -d $REF_FILE.mmi $REF_FILE >$REF_FILE.log 2>/dev/null
 #### Parse the read file
 6. Generate logs for the read file using the command
 ```
-minimap2 -w1 -k150 -d $READ_FILE.mmi $READ_FILE >$READ_FILE.log 2>/dev/null
+minimap2/minimap2 -w1 -k150 -d $READ_FILE.mmi $READ_FILE >$READ_FILE.log 2>/dev/null
 ```
 7. Generate a table for the reads by running
 ```

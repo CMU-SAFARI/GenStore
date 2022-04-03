@@ -4,6 +4,7 @@ genstore-sw-filter/generate_index
 genstore-sw-filter/generate_reads
 genstore-sw-filter/index_index
 genstore-sw-filter/index_reads
+genstore-sw-filter/sample_data/*
 */*.o
 */*/*.o
 */minimap2
