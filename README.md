@@ -109,6 +109,14 @@ Software GenStore is an implementation of the GenStore filter without in-storage
 
 ### Experiment Workflow
 
+0. Set the environment variables `REF_FILE`, `READ_FILE`, `HASH_SIZE`, `LOG2_NUM_THREADS`. For example, to use the provided sample data, set the variables as follows:
+```
+REF_FILE=sample_data/NC_000913.3.head1000.fa
+READ_FILE=sample_data/reads.fq
+HASH_SIZE=48
+LOG2_NUM_THREADS=2
+```
+
 1. Compile the hash sorter and minimap 2 by running `make` in `genstore-sw-filter` and `genstore-sw-filter/minimap2/`
 
 #### Parse the reference file
