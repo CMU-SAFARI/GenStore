@@ -61,7 +61,7 @@ The infrastructure has been tested with the following system configuration:
 
 ## Preparing Input Data
 
-### Real Genomics Read Sets
+### Real Genomic Read Sets
 
 The read sets used in the paper can be obtained by searching the read set eccession IDs provided in the paper in the [European Bioinformatics Institute ftp](ftp://ftp.sra.ebi.ac.uk/vol1/fastq/). 
 
