@@ -131,11 +131,11 @@ minimap2/minimap2 -w1 -k150 -d $REF_FILE.mmi $REF_FILE >$REF_FILE.log 2>/dev/nul
 #### Parse the read file
 6. Generate logs for the read file using the command
 ```
-minimap2/minimap2 -w1 -k150 -d $READ_FILE.mmi $READ_FILE >$READ_FILE.log 2>/dev/null
+minimap2/minimap2 -w1 -k$READ_LENGTH -d $READ_FILE.mmi $READ_FILE >$READ_FILE.log 2>/dev/null
 ```
 7. Generate a table for the reads by running
 ```
-./generate_read_hashes.sh $READ_FILE.log > $READ_FILE.hashes
+./generate_read_hashes.sh $READ_FILE.log $READ_LENGTH > $READ_FILE.hashes
 ```
 8. Reduce the table to the target hash size using
 ```
