@@ -156,10 +156,17 @@ minimap2/minimap2 -w1 -k$READ_LENGTH -d $READ_FILE.mmi $READ_FILE >$READ_FILE.lo
 ```
 
 #### Run the exact match filter
+10. Run the filter using
 ```
 ./check_files_mt $HASH_SIZE $REF_FILE.$HASH_SIZE.hashes.bin $READ_FILE.$HASH_SIZE.hashes
 ```
+For example, for the provided input set, the output should look like the following:
+```
+bit width: 48 num_threads: 4
 
+69782 1001 725 0.724276
+```
+where 0.724276 is the ratio of total reads that exactly match some subsequences in the reference genome.
 
 
 
