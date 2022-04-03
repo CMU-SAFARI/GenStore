@@ -126,7 +126,7 @@ minimap2/minimap2 -w1 -k150 -d $REF_FILE.mmi $REF_FILE >$REF_FILE.log 2>/dev/nul
 ```
 5. Index the table using
 ```
-./index_index $HASH_SIZE $REF_FILE.$HASH_SIZE.hashes.bin $(( 64 - LOG2_NUM_THREADS )) > $REF_FILE.$HASH_SIZE.hashes.bin.index
+./index_index $HASH_SIZE $REF_FILE.$HASH_SIZE.hashes.bin $LOG2_NUM_THREADS > $REF_FILE.$HASH_SIZE.hashes.bin.index
 ```
 
 #### Parse the read file
@@ -136,15 +136,15 @@ minimap2/minimap2 -w1 -k$READ_LENGTH -d $READ_FILE.mmi $READ_FILE >$READ_FILE.lo
 ```
 7. Generate a table for the reads by running
 ```
-./generate_read_hashes.sh $READ_FILE.log $READ_LENGTH > $READ_FILE.hashes
+./generate_read_hashes.sh $READ_FILE.log > $READ_FILE.hashes
 ```
 8. Reduce the table to the target hash size using
 ```
-./generate_reads $HASH_SIZE $READ_FILE.hashes > $READ_FILE.$HASH_SIZE.hashes
+./generate_reads $READ_LENGTH $HASH_SIZE $READ_FILE.hashes > $READ_FILE.$HASH_SIZE.hashes
 ```
 9. Index the table using
 ```
-./index_reads $HASH_SIZE $READ_FILE.$HASH_SIZE.hashes $(( 64 - LOG2_NUM_THREADS )) > $READ_FILE.$HASH_SIZE.hashes.index
+./index_reads $HASH_SIZE $READ_FILE.$HASH_SIZE.hashes $LOG2_NUM_THREADS > $READ_FILE.$HASH_SIZE.hashes.index
 ```
 
 #### Run the exact match filter
