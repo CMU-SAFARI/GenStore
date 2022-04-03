@@ -1,7 +1,7 @@
 CFLAGS=		 -Wall -O2 -Wc++-compat -pg -g -no-pie #-Wextra
 CPPFLAGS=	-DHAVE_KALLOC
 INCLUDES=
-OBJS=		kthread.o kalloc.o misc.o bseq.o sketch.o sdust.o options.o index.o  chain.o align.o hit.o map.o format.o pe.o esterr.o splitidx.o ksw2_ll_sse.o SneakySnake.o
+OBJS=		kthread.o kalloc.o misc.o bseq.o sketch.o sdust.o options.o index.o  chain.o align.o hit.o map.o format.o pe.o esterr.o splitidx.o ksw2_ll_sse.o
 PROG=		minimap2
 PROG_EXTRA=	sdust minimap2-lite
 LIBS=		-Wl,-Bstatic -lgmp  -Wl,-Bdynamic -lm -lz -lpthread -lcrypto -lssl  -pg -g -no-pie
@@ -126,11 +126,10 @@ exact2_match_sse.o: ksw2.h kalloc.h
 ksw2_ll_sse.o: ksw2.h kalloc.h
 kthread.o: kthread.h
 main.o: bseq.h minimap.h mmpriv.h ketopt.h
-map.o: kthread.h kvec.h kalloc.h sdust.h mmpriv.h minimap.h bseq.h khash.h SneakySnake.h ksw2.h ksort.h
+map.o: kthread.h kvec.h kalloc.h sdust.h mmpriv.h minimap.h bseq.h khash.h ksw2.h ksort.h
 misc.o: mmpriv.h minimap.h bseq.h ksort.h
 options.o: mmpriv.h minimap.h bseq.h
 pe.o: mmpriv.h minimap.h bseq.h kvec.h kalloc.h ksort.h
 sdust.o: kalloc.h kdq.h kvec.h ketopt.h sdust.h
 sketch.o: kvec.h kalloc.h mmpriv.h minimap.h bseq.h
 splitidx.o: mmpriv.h minimap.h bseq.h
-SneakySnake.o: SneakySnake.h
