@@ -5,5 +5,8 @@ genstore-sw-filter/generate_reads
 genstore-sw-filter/index_index
 genstore-sw-filter/index_reads
 */*.o
+*/*/*.o
 */minimap2
+*/*/minimap2
 */*.a
+*/*/*.a
