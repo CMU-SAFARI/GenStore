@@ -1,4 +1,4 @@
-**GenStore: A High-Performance and Energy-Efficient In-Storage Computing System for Genome Sequence Analysis**
+# GenStore: A High-Performance and Energy-Efficient In-Storage Computing System for Genome Sequence Analysis
 
 ## What is GenStore?
 
