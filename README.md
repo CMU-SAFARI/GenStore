@@ -70,7 +70,7 @@ The read sets used in the paper can be obtained by searching the read set eccess
 We use mason_simulator (part of the SeqAn package) to simulate short reads of varying degree of genetic distance from the reference genome. 
 
 0. `cd input-generation`
-1. Download all files specified in files_to_download.txt to this directory
+1. Download all files specified in `files_to_download.txt` to this directory
 2. Create a directory called "index" and generate an index of the reference genome using the command
 ```
 minimap2 -d index/hg38.mmi hg38.fa
