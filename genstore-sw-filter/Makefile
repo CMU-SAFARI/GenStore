@@ -1,3 +1,5 @@
+all: generate gen_hash index_index index_reads reads check_mt
+
 generate: generate_index.cpp
 	g++ -O3 -o generate_index generate_index.cpp -march=core-avx2 -fopenmp -pthread
 

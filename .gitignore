@@ -1,0 +1,9 @@
+genstore-sw-filter/check_files_mt
+genstore-sw-filter/gen_hash
+genstore-sw-filter/generate_index
+genstore-sw-filter/generate_reads
+genstore-sw-filter/index_index
+genstore-sw-filter/index_reads
+*/*.o
+*/minimap2
+*/*.a
