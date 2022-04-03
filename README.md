@@ -45,7 +45,7 @@ Proceedings of the 27th International Conference on Architectural Support for Pr
 ## Prerequisites
 
 The infrastructure has been tested with the following system configuration:
-  * G++ v11.1.0
+  * g++ v11.1.0
   * Python v3.6
   * Perl v5.24.1
 
@@ -62,7 +62,7 @@ The read sets used in the paper can be obtained by searching the read set eccess
 
 We use mason_simulator (part of the SeqAn package) to simulate short reads of varying degree of genetic distance from the reference genome. 
 
-0. cd input-generation
+0. `cd input-generation`
 1. Download all files specified in files_to_download.txt to this directory
 2. Create a directory called "index" and generate an index of the reference genome using the command
 ```
