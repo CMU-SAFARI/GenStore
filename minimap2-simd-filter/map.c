@@ -320,32 +320,11 @@ int mm_map_frag2(const mm_idx_t *mi, const mm_idx_t *mi_exact, int n_segs, const
 	hash ^= __ac_Wang_hash(qlen_sum) + __ac_Wang_hash(opt->seed);
 	hash  = __ac_Wang_hash(hash);
 
-    //nika: do the exact matching here
 
-    bool exact_match_hash = false;
+  //  bool exact_match_hash = false;
     bool exact_match_simd = false;
 
-    double hash_time_s = 0;
- //TEMP
-    
-	collect_minimizers(b->km, opt_exact, mi_exact, n_segs, qlens, seqs, &mv, true, &hash_time_s);
-    *hash_time = hash_time_s + *hash_time;
-    //printf("hash_time after minimizer: %lf \n", *hash_time);
-	if (opt->flag & MM_F_HEAP_SORT) a = collect_seed_hits_heap(b->km, opt_exact, opt_exact->mid_occ, mi_exact, qname, &mv, qlen_sum, &n_a, &rep_len, &n_mini_pos, &mini_pos);
-	else a = collect_seed_hits(b->km, opt_exact, opt->mid_occ, mi_exact, qname, &mv, qlen_sum, &n_a, &rep_len, &n_mini_pos, &mini_pos);
-
-    int64_t n_a_exact_hash = 0;
-    if(n_a){
-        *exact_cnt = *exact_cnt + 1;
-        exact_match_hash = true;
-        //printf("exact match found using hash table\n");
-    }
-    n_a_exact_hash = n_a;
-
-
-
-   //TEMP 
-  //if(!n_a){ // no matches found
+   double hash_time_s = 0;
     
         collect_minimizers(b->km, opt, mi, n_segs, qlens, seqs, &mv, false, &hash_time_s);
         if (opt->flag & MM_F_HEAP_SORT) a = collect_seed_hits_heap(b->km, opt, opt->mid_occ, mi, qname, &mv, qlen_sum, &n_a, &rep_len, &n_mini_pos, &mini_pos);
@@ -356,11 +335,6 @@ int mm_map_frag2(const mm_idx_t *mi, const mm_idx_t *mi_exact, int n_segs, const
             *total_cnt = *total_cnt + 1;
 
             for (i = 2; i <= n_a; ++i){
-
-                    //breaks if there is at least n exact matches
-                    //now n=1
-                    //if(exact_match_per_read == MATCH_NUM_PER_READ)
-                      //  break;
 
 
                     if ((i<n_a) && (((int32_t)a[i].y - (int32_t)a[i-1].y) - ((int32_t)a[i].x - (int32_t)a[i-1].x) ==0)) {
@@ -391,21 +365,7 @@ int mm_map_frag2(const mm_idx_t *mi, const mm_idx_t *mi_exact, int n_segs, const
                             
                             int Edits=0;
                             
-                        //	if(Edits > -1){
-                            /*
-                                if (printSAM) {
-                                    printf("%c\t%s\t%s\t%s\t%d\t%d\t", "+-"[(a[i-1].x>>63)], qname2, seqs[0], mi->seq[a[i-1].x<<1>>33].name, mappingStartingPosition, 
-                                    mappingStartingPosition+ qlens[0]);
-                                    //printf("%" PRIu64 "\t", mapStartPos);
-                                    //printf("%" PRIu64 "\t", mapEndPos);
-                                    if(Edits == 0) printf("%dM\t", qlens[0]);
-                                    if(Edits == 1) printf("1E%dM\t", qlens[0]-1);
-                                }
-                             */   
-                                //for (int mapSeqI=0 ;  mapSeqI <qlens[0]; ++mapSeqI) 
-                                //	printf("%c", RefSeq[mapSeqI]);
-                                //printf("\t");
-                                
+                               
                                 n_regs[0]++;
                                 Accepted[0]++;
 
@@ -419,9 +379,6 @@ int mm_map_frag2(const mm_idx_t *mi, const mm_idx_t *mi_exact, int n_segs, const
                                 int tl = strlen(RefSeq), ql = strlen(seqs[0]);
                                 uint8_t *ts, *qs, c[256];
                                 ksw_extz_t ez;
-
-                                //printf("R: %s \n", RefSeq);
-                                //printf("Q: %s \n", seqs[0]);
 
                                 memset(&ez, 0, sizeof(ksw_extz_t));
                                 memset(c, 4, 256);
@@ -444,129 +401,30 @@ int mm_map_frag2(const mm_idx_t *mi, const mm_idx_t *mi_exact, int n_segs, const
                                 if (exact_match)
                                     exact_match_per_read++;
 
-                              // if((0 < mismatch_cnt) && (mismatch_cnt < 101)) 
-                              //      mismatch_log[mismatch_cnt - 1]++;
-
-
-                              //  for(int i = 0; i<10; i++){
-                               //     printf("mismatch_log %d: %d ----- mismatch_cnt = %d \n", i+1, mismatch_log[i], mismatch_cnt);
-                               // }
-
-
                                 if(exact_match && (qlens[0] == 76)) {
                                    // *exact_cnt = *exact_cnt + 1;
                                     exact_match_simd = true;
-
-                                  //printf("%d \n", *exact_cnt);
-                                  //printf("exact match found using simd\n");  
-                                  //printf("R: %s \n", RefSeq);
-                                  //printf("Q: %s \n", seqs[0]);
-                                }
+                               }
                               
-                                
-                               /* 
-                                printf("R: %s , length: %d \n", RefSeq, qlens[0]);
-                                printf("Q: %s \n", seqs[0]);
-                                //printf("length: %d \n", qlens[0]);
-                                
-                                if(exact_match_simd)
-                                    printf("=============>exact match found using simd\n");
-                                if(exact_match_hash)
-                                    printf("------------->exact match found using hash\n");
-
-                                if(exact_match_hash != exact_match_simd) {
-                                    printf("not matching together! length: %d , n_a_exact_hash: ", qlens[0]);
-                                    printf("%" PRId64 "\n", n_a_exact_hash);
-                                }
-
-                                if(exact_match_hash && exact_match_simd)
-                                    printf("### matching together and n_a_exact_hash is %" PRId64 "\n", n_a_exact_hash);
-                                    
- 
-                                if(!exact_match_simd)
-                                    printf("$$$ when true exact match, n_a_exact_hash is %" PRId64 "\n", n_a_exact_hash);
-                                //assert(exact_match_simd == exact_match_hash);
-
-                                //printf("total_cnt: %li \n", *total_cnt);
-                                //printf("%s \n", exact_match? "EXACT!!!" : "NOT exact***");
-
-                                
-
-                                if(qlens[0] ==76) {
-                                    printf("R: %s , length: %d \n", RefSeq, qlens[0]);
-                                    printf("Q: %s \n", seqs[0]);
-                                }
- 
-                                if( (exact_match_hash) && (!exact_match_simd)) {
-                                    printf(">>>> exact hash but not simd: %d\n", strcmp(RefSeq, seqs[0]));
-                                    printf("R: %s \n", RefSeq);
-                                    printf("Q: %s \n", seqs[0]);
-                                    printf("\n");
-                                }
-                                 if( (!exact_match_hash) && (exact_match_simd) && (qlens[0] == 76)) {
-                                    printf("<<<< exact simd but not hash %d\n", strcmp(RefSeq, seqs[0]));
-                                    printf("R: %s \n", RefSeq);
-                                    printf("Q: %s \n", seqs[0]);
-                                    printf("\n");
-                                }
-
-                                */
 
 
-
-
+                               /*     
                                 if( (exact_match_simd) && (qlens[0] != 76))
                                     printf("WWWW total simd non76\n");
                                 if( (exact_match_simd) && (qlens[0] == 76))
                                     printf("WWWW total simd 76\n");
-
-                                if((exact_match_hash))
-                                    printf("WWWW total hash\n");
-
-                                if( (exact_match_hash) && (exact_match_simd) && (qlens[0] != 76))
-                                    printf("WWWW correct non76\n");
-                                if( (exact_match_hash) && (exact_match_simd) && (qlens[0] == 76))
-                                    printf("WWWW correct 76\n");
-                                if( (exact_match_hash) && (!exact_match_simd) && (strcmp(RefSeq, seqs[0]) != 0))
-                                    printf("WWWW collision\n");
-                                if( (exact_match_hash) && (!exact_match_simd) && (strcmp(RefSeq, seqs[0]) == 0))
-                                    printf("WWWW better than simd\n");
-                                if( (!exact_match_hash) && (exact_match_simd) && (qlens[0] == 76) && (strcmp(RefSeq, seqs[0]) == 0))
-                                    printf("WWWW hash fail\n");
-                                if( (!exact_match_hash) && (exact_match_simd) && (qlens[0] != 76))
-                                    printf("WWWW wrong read length\n");
-                                if( (exact_match_hash) && (!exact_match_simd) && (qlens[0] == 76) && (strcmp(RefSeq, seqs[0]) != 0))
-                                    printf("WWWW collision length76\n");
-
-                               // if(!((exact_match) && (qlens[0] == 76))){
+                                */
+                               if(!exact_match_simd){
                                     
                                     //ksw_extz(0, ql, qs, tl, ts, 5, mat, gapo, gape, -1, -1, 0, &ez);	
 
-                                //TEMP: commented out the line below
-                                   // ksw_extz2_sse(0, ql, qs, tl, ts, 5, mat, gapo, gape, -1, -1, 0, 0, &ez);
-                              //  }
+                                    ksw_extz2_sse(0, ql, qs, tl, ts, 5, mat, gapo, gape, -1, -1, 0, 0, &ez);
+                                }
             
-                                /*	if (printSAM) {
-                                        for (i = 0; i < ez.n_cigar; ++i) // print CIGAR
-                                            printf("%d%c", ez.cigar[i]>>4, "MID"[ez.cigar[i]&0xf]);
-                                        putchar('\n');
-                                    }
-                                */    
+                                 
                                     free(ez.cigar); free(ts); free(qs);
                                     
-                               // }
-                                    
-                            //	if (printSAM) printf("\n");
-                                
-                                
-                        //	}
-                            
-                        //	else
-                        //		Rejected[0]++;					
-                            
-                            //if (n_regs[0] >= MAX_NUM_MAPPING_LOCATION_PER_READ) 
-                            //	return 1;
-                        }
+                                        }
                         if (i<n_a) {
                             Seed_Num=1;
                             mappingStartingPosition = ((int32_t)a[i].x - (int32_t)a[i].y);
@@ -576,25 +434,11 @@ int mm_map_frag2(const mm_idx_t *mi, const mm_idx_t *mi_exact, int n_segs, const
                     
             }
         }
-    // TEMP   
-//   }//if(!n_a)
 
 	kfree(b->km, mv.a);
 	kfree(b->km, a);
 	kfree(b->km, u);
 	kfree(b->km, mini_pos);
-	/*if (b->km) {
-		km_stat(b->km, &kmst);
-		if (mm_dbg_flag & MM_DBG_PRINT_QNAME)
-			fprintf(stderr, "QM\t%s\t%d\tcap=%ld,nCore=%ld,largest=%ld\n", qname, qlen_sum, kmst.capacity, kmst.n_cores, kmst.largest);
-		assert(kmst.n_blocks == kmst.n_cores); // otherwise, there is a memory leak
-		if (kmst.largest > 1U<<28) {
-			km_destroy(b->km);
-			b->km = km_init();
-		}
-	}*/
-	//for (i = 0; i < &n_regs; ++i)
-		//printf("-----> %d %d\n",&regs[i]->rs, &regs[i]->qs);
 	return 1;
 }
 // mm_map(index, kseq_reads->seq.l, kseq_reads->seq.s, &numOfMaps, tbuf, &opt, 0);
