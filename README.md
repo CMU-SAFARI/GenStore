@@ -31,6 +31,7 @@ Proceedings of the 27th International Conference on Architectural Support for Pr
 
 - [What is GenStore?](#what-is-genstore-)
 - [Citation](#citation)
+- [Prerequisites](#prerequisites)
 - [Preparing Input Data](#preparing-input-data)
   * [Real Genomic Read Sets](#real-genomic-read-sets)
   * [Synthetic Read Sets](#synthetic-read-sets)
@@ -47,6 +48,13 @@ Proceedings of the 27th International Conference on Architectural Support for Pr
 - [Contact](#contact)
 
 
+## Prerequisites
+
+The infrastructure has been tested with the following system configuration:
+  * g++ v11.1.0
+  * Python v3.6
+
+Prerequisites specific to each experiment are listed in their respective subsections.
 
 
 ## Preparing Input Data
