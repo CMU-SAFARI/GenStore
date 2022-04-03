@@ -97,6 +97,7 @@ For more information about minimap2, please refer to its [original repo]().
 
 * We implement the exact match filer in `exact2_match_sse.c`
 * The filter in used in `map.c` by calling function `exact_match_sse`
+* If a read is detected to be an exact match, the mapper skips the expensive alignment step performed in `ksw_extz2_sse`
 
 
 
