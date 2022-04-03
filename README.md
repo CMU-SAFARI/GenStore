@@ -1,6 +1,6 @@
-## What is GenStore?
+**GenStore: A High-Performance and Energy-Efficient In-Storage Computing System for Genome Sequence Analysis**
 
-> GenStore: A High-Performance and Energy-Efficient In-Storage Computing System for Genome Sequence Analysis
+## What is GenStore?
 
 GenStore is the first in-storage processing system designed for genome sequence analysis that greatly reduces both data movement and computational overheads of genome sequence analysis by exploiting low-cost and accurate in-storage filters. GenStore leverages hardware/software co-design to address the challenges of in-storage processing, supporting reads with 1) different properties such as read lengths and error rates, which highly depend on the sequencing technology, and 2) different degrees of genetic variation compared to the reference genome, which highly depends on the genomes that are being compared. 
 
@@ -30,9 +30,9 @@ Proceedings of the 27th International Conference on Architectural Support for Pr
 ## Table of Contents
 
 - [What is GenStore?](#what-is-genstore-)
-- [Prerequisites](#prerequisites)
+- [Citation](#citation)
 - [Preparing Input Data](#preparing-input-data)
-  * [Real Genomics Read Sets](#real-genomics-read-sets)
+  * [Real Genomic Read Sets](#real-genomic-read-sets)
   * [Synthetic Read Sets](#synthetic-read-sets)
 - [Baseline Software Exact Match Filter](#baseline-software-exact-match-filter)
   * [Code Walkthrough](#code-walkthrough)
@@ -44,17 +44,7 @@ Proceedings of the 27th International Conference on Architectural Support for Pr
 - [Hardware GenStore](#hardware-genstore)
   * [HDL Implementation](#hdl-implementation)
   * [End-to-end Throughput](#end-to-end-throughput)
-- [Citation](#citation)
 - [Contact](#contact)
-
-
-
-## Prerequisites
-
-The infrastructure has been tested with the following system configuration:
-  * g++ v11.1.0
-  * Python v3.6
-  * Perl v5.24.1
 
 
 
