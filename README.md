@@ -81,7 +81,7 @@ minimap2 -d index/hg38.mmi hg38.fa
 
 ## Baseline Software Exact Match Filter
 
-We implement a baseline exact match filter using SIMD operations integrated in [minimap2]().
+We implement a baseline exact match filter using SIMD operations integrated in [minimap2](https://academic.oup.com/bioinformatics/article/34/18/3094/4994778).
 
 0. For installation, run `make`
 1. General usage
@@ -89,7 +89,7 @@ We implement a baseline exact match filter using SIMD operations integrated in [
 minimap2 -d ref.mmi ref.fa                     # indexing
 minimap2 -a ref.mmi reads.fq > alignment.sam   # alignment
 ```
-For more information about minimap2, please refer to its [original repo]().
+For more information about minimap2, please refer to its [original repo](https://github.com/lh3/minimap2).
 
 ### Code Walkthrough
 
@@ -170,7 +170,7 @@ where 0.724276 is the ratio of total reads that exactly match some subsequences 
 
 ## Hardware GenStore
 
-We evaluate hardware configurations using two state-of-the-art simulators to analyze the performance of GenStore. We model DRAM timing with the DDR4 interface in [Ramulator](), a widely-used, cycle-accurate DRAM simulator. We model SSD performance using [MQSim](), a widely-used simulator for modern SSDs. We model the end-to-end throughput of GenStore based on the throughput of each GenStore pipeline stage: accessing NAND flash chips, accessing internal DRAM, accelerator computation, and transferring unfiltered data to the host. 
+We evaluate hardware configurations using two state-of-the-art simulators to analyze the performance of GenStore. We model DRAM timing with the DDR4 interface in [Ramulator](https://github.com/CMU-SAFARI/ramulator), a widely-used, cycle-accurate DRAM simulator. We model SSD performance using [MQSim](https://github.com/CMU-SAFARI/MQSim), a widely-used simulator for modern SSDs. We model the end-to-end throughput of GenStore based on the throughput of each GenStore pipeline stage: accessing NAND flash chips, accessing internal DRAM, accelerator computation, and transferring unfiltered data to the host. 
 
 
 ### HDL Implementation
